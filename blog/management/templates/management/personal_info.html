@@ -1,0 +1,39 @@
+{% extends 'management/base.html' %}
+
+{% block content %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table align="center" border="1" cellspacing="0" cellpadding="10">
+
+            <tr>
+                <td rowspan="3">
+                    <img src="/static/{{ user.photo }}" style="width: 200px;height: 200px"><br>
+                    <input type="file" name="photo">
+                </td>
+                <td>用户名</td>
+                <td style="width: 120px">
+                    <input type="text" name="username" value="{{ user.username }}">
+                </td>
+                <td>邮箱</td>
+                <td><input type="text" name="email" value="{{ user.email }}" disabled></td>
+            </tr>
+            <tr>
+                <td>手机号</td>
+                <td><input type="text" name="phone_number" value="{{ user.phone_number }}"></td>
+                <td>性别</td>
+                <td><input type="text" name="gender" value="{{ user.gender }}"></td>
+            </tr>
+            <tr>
+                <th>年龄</th>
+                <td><input type="text" name="age" value="{{ user.age }}"></td>
+                <th>地址:</th>
+                <td>
+                    <input type="text" name="address" value="{{ user.address }}">
+                </td>
+            </tr>
+        </table>
+        <hr>
+        <input type="submit" style="margin-left: 500px" class="btn btn-warning" value="完善个人信息">
+    </form>
+
+{% endblock %}

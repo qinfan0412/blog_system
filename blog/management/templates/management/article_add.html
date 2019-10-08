@@ -1,0 +1,43 @@
+{% extends "management/base.html" %}
+{% block content %}
+    <form action="" method="post" class="user" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <input type="text" name="article_title" placeholder="文章标题"
+                   class="form-control form-control-user">
+        </div>
+        <div class="form-group">
+            <textarea name="article_content" placeholder="内容"
+                      class="form-control form-control-user"></textarea>
+        </div>
+{#     <div class="form-group">#}
+{#            <input type="text" name="article_date" placeholder="日期"#}
+{#                   class="form-control form-control-user">#}
+{#        </div>#}
+        <div class="form-group">
+            <input type="text" name="article_description" placeholder="文章描述"
+                   class="form-control form-control-user">
+        </div>
+         <div class="form-group">
+            <select name="article_author" class="btn btn-warning dropdown-toggle btnuser btn-block">
+                <option value="0">--请选择作者--</option>
+                {% for one in author  %}
+                    <option value="{{ one.id }}">{{ one.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <select name="article_type" class="btn btn-warning dropdown-toggle btnuser btn-block">
+                <option value="0">--请选择类型--</option>
+                {% for one in type %}
+                    <option value="{{ one.id }}">{{ one.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            上传图片：<input type="file" name="pic">
+        </div>
+        <input class="btn btn-primary btn-user btn-block" type="submit"
+               value="上传文章">
+    </form>
+{% endblock %}

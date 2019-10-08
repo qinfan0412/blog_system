@@ -1,0 +1,57 @@
+{% extends 'blogindex/base.html' %}
+{% block content %}
+    <div class="container">
+        <div class="bloglist f_l">
+            {% for one in article %}
+                <h3><a href="/blogindex/articletails/{{ one.id }}">{{ one.title }}</a></h3>
+                <figure><img src="/static/{{ one.picture }}" alt="{{ one.title }}"></figure>
+                <ul>
+                    <p> {{ one.description|safe }}</p>
+                    <a title="这是内容" href="/blogindex/articletails/{{ one.id }}" target="_blank" class="readmore">阅读全文&gt;&gt;</a>
+                </ul>
+                <p class="dateview"><span>{{ one.date }}</span><span>作者：{{ one.author }}</span><span>个人博客：[<a
+                        href="https://blog.csdn.net/qq_40558166">不愿意透露姓名的网友</a>]</span></p>
+            {% endfor %}
+        </div>
+        <div class="r_box f_r">
+            <div class="tit01">
+                <h3 class="tit">关注我</h3>
+                <div class="gzwm">
+                    <ul>
+                        <li><a class="email" href="JavaScript:alert('电话：13823432424')">我的电话</a></li>
+                        <li><a class="qq" href="JavaScript:alert('邮箱：1243@qq.com')">我的邮箱</a></li>
+                        <li><a class="tel" href="JavaScript:alert('QQ：235454362')">我的QQ</a></li>
+                        <li><a class="prize" href="JavaScript:alert('奖项：内蒙古自治区科尔沁左翼后旗甘旗卡镇满斗村金葫芦杯少儿拉丁舞大赛业余组银奖')">个人奖项</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--tit01 end-->
+
+            <div class="tuwen">
+                <h3 class="tit">图文推荐</h3>
+                <ul>
+                    {% for one in article %}
+                        <li><a href="/blogindex/articletails/{{ one.id }}"><img
+                                src="/static/{{ one.picture }}"><b>{{ one.title }}</b></a>
+                            <p><span class="tulanmu"><a
+                                    href="/blogindex/articletails/{{ one.id }}">{{ one.type.first }}</a></span><span
+                                    class="tutime">{{ one.date }}</span></p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="ph">
+                <h3 class="tit">点击排行</h3>
+                <ul class="rank">
+                    {% for one in click_article %}
+                        <li><a href="/blogindex/articletails/{{ one.id }}" title="标题" target="_blank">{{ one.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="ad"><img src="/static/blogindex/images/111.jpg"></div>
+        </div>
+    </div>
+    <!-- container代码 结束 -->
+    <div class="jzend"></div>
+{% endblock %}

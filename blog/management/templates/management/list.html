@@ -1,0 +1,44 @@
+{% extends 'management/base.html' %}
+
+{% block content %}
+    <form>
+        <table class="table">
+            <tr>
+                <th>文章标题</th>
+                <th>文章描述</th>
+                <th>文章作者</th>
+                <th>文章类型</th>
+                <th>创作日期</th>
+                <th>操作</th>
+            </tr>
+            {% for i in paginator_list %}
+                <tr>
+                    <td>{{ i.title }}</td>
+                    <td>{{ i.description }}</td>
+                    <td>{{ i.author }}</td>
+                    <td>{{ i.type.name }}</td>
+                    <td>{{ i.date }}</td>
+                <td>
+                    <a href="/management/article_update/?update_title={{ i.title }}" type="button" class="btn btn-warning">修改</a>
+                    <a href="/management/list/?del_id={{ i.id }}" type="button" class="btn btn-danger">删除</a>
+                </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </form>
+    <ul class="pagination">
+
+        {% for one in paginator.page_range %}
+            <li class="paginate button page-item previous">
+                {% if status == '0' %}
+                    <a class="page-link" href="/management/list/{{ one }}">{{ one }}</a>
+                {% else %}
+                    <a class="page-link" href="/management/list/{{ one }}">{{ one }}</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+
+    </ul>
+    <script>
+    </script>
+{% endblock %}
